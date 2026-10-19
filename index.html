@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Canales de riego · Catamarca</title>
+    <link rel="stylesheet" href="vendor/maplibre-gl.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="irrigation-brand">
+        <img src="img/logo_riego3.png" alt="Canales de Riego" width="970" height="523" />
+      </div>
+      <!-- Indicadores del conjunto completo; los filtros tienen su propio resumen. -->
+      <div class="header-metrics" aria-label="Estado de los datos">
+        <div class="metric metric-distance">
+          <strong id="channel-total">— m</strong>
+          <span>RELEVADOS Y DIGITALIZADOS</span>
+          <small id="channel-data-note">DATOS DE PRUEBA</small>
+        </div>
+        <div class="metric metric-date">
+          <time id="channel-updated">—</time>
+          <span>ÚLTIMA ACTUALIZACIÓN</span>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="workspace">
+        <div id="map" aria-label="Mapa interactivo"></div>
+        <div class="water-brand" id="water-brand">
+          <img src="assets/logoADC.png" alt="Aguas de Catamarca S.A.P.E.M." width="397" height="173">
+          <div class="map-tools">
+            <span id="position">EPSG:4326 · WGS 84</span>
+          </div>
+        </div>
+        <details class="basemap-control" aria-label="Mapa base">
+          <summary>Mapa base</summary>
+          <label for="basemap">Elegí el fondo del mapa</label>
+          <select id="basemap">
+            <option value="colorful" selected>Colorful · calles y relieve</option>
+            <option value="googleXYZ">Google · Híbrido XYZ</option>
+          </select>
+        </details>
+        <div id="notice" role="status" aria-live="polite" hidden></div>
+      </section>
+      <aside aria-label="Leyenda y filtros">
+        <div class="filter-title"><h1>Leyenda y filtros</h1><button id="toggle-filters" aria-expanded="true" aria-controls="filter-body">Ocultar</button></div>
+        <div id="filter-body">
+          <section class="channel-filters">
+            <fieldset><legend>Departamento</legend><div id="filter-departamento" class="filter-chips"></div></fieldset>
+            <fieldset><legend>Localidad</legend><div id="filter-localidad" class="filter-chips"></div></fieldset>
+            <fieldset><legend>Materialidad</legend><div id="filter-material" class="filter-chips"></div></fieldset>
+            <label class="filter-label" for="search">Buscar canal</label>
+            <input id="search" type="search" placeholder="Nombre o identificador…" autocomplete="off" />
+            <div class="filter-summary">
+              <span id="filter-results" role="status" aria-live="polite"></span>
+              <button id="reset-filters" type="button">Limpiar filtros</button>
+            </div>
+            <button id="fit-results" type="button">⌖ Encuadrar resultados</button>
+          </section>
+        </div>
+      </aside>
+    </main>
+    <script src="vendor/maplibre-gl.js"></script>
+    <script src="core.js"></script>
+    <script src="basemaps.js"></script>
+    <!-- Copia generada del GeoJSON para permitir apertura directa con doble clic. -->
+    <script src="data/cursos_agua_v1.js"></script>
+    <script src="flow.js"></script>
+    <script src="measure.js"></script>
+    <script src="data-info.js"></script>
+    <script src="filters.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

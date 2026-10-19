@@ -1,0 +1,101 @@
+:root {
+  font-family: Segoe UI, Arial, sans-serif;
+  font-size: 14px;
+  color: #182c43;
+  background: #edf1ef;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+[hidden] { display: none !important; }
+button, input, select { font: inherit; }
+button { padding: 10px 14px; color: #244a44; background: #fff; border: 1px solid #cfddd7; border-radius: 8px; cursor: pointer; }
+button:hover { background: #eaf4ef; }
+button:focus-visible, input:focus-visible, select:focus-visible, .basemap-control>summary:focus-visible { outline: 3px solid #70bdaa; outline-offset: 2px; }
+button:disabled, select:disabled { opacity: .55; cursor: default; }
+main { position: relative; height: 100dvh; }
+.workspace { position: relative; height: 100%; }
+#map { position: absolute; inset: 0; }
+
+/* Cabecera transparente: los elementos flotan sobre el mapa. */
+header { position: absolute; inset: 0 0 auto; z-index: 5; height: 92px; padding: 10px 22px; display: flex; align-items: center; pointer-events: none; }
+.irrigation-brand img { display: block; height: 72px; width: auto; max-width: 270px; object-fit: contain; }
+.header-metrics { position: absolute; left: 314px; top: 14px; display: flex; gap: 5px; padding: 6px; background: #ffffffd9; border: 1px solid #fff; border-radius: 18px; box-shadow: 0 6px 22px #27465c0b; pointer-events: auto; }
+.metric { position: relative; display: flex; flex-direction: column; justify-content: center; min-width: 190px; padding: 8px 15px; }
+.metric-distance { min-width: 240px; padding-right: 125px; background: linear-gradient(110deg,#fff7de,#f0f7fa); border-radius: 12px; }
+.metric strong, .metric time { font-size: 18px; font-weight: 800; color: #142e45; line-height: 1.3; white-space: nowrap; }
+.metric span { margin-top: 3px; font-size: 9px; letter-spacing: .65px; color: #58748c; white-space: nowrap; }
+.metric small { position: absolute; top: 12px; right: 10px; padding: 4px 6px; border-radius: 5px; background: #efe1b3; color: #686044; font-size: 8px; font-weight: 700; letter-spacing: .4px; }
+.metric-date { border-left: 1px solid #e6edf2; }
+
+/* Filtros a la izquierda. */
+aside { position: absolute; left: 14px; top: 106px; width: 300px; max-width: calc(100% - 28px); max-height: calc(100% - 156px); overflow: auto; z-index: 4; background: #fffffff5; border: 1px solid #e5e9ee; border-radius: 18px; box-shadow: 0 8px 32px #17334e20; }
+.filter-title { display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1; padding: 14px 16px; border-bottom: 1px solid #e3e8ed; background: #fafcfd; }
+.filter-title h1 { font-size: 14px; margin: 0; }
+.filter-title button { padding: 4px; border: 0; background: transparent; color: #536c84; font-size: 12px; }
+.channel-filters { padding: 16px; }
+.channel-filters fieldset { min-width: 0; border: 0; padding: 0; margin: 0 0 20px; }
+.channel-filters legend, .filter-label { display: block; margin-bottom: 9px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #607a92; }
+.filter-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter-chip { display: inline-flex; align-items: center; gap: 7px; padding: 7px 11px; border-radius: 20px; border-color: #dfe4ea; color: #23354b; font-size: 12px; }
+.filter-chip[aria-pressed=true] { color: #07677c; border-color: #03a5b8; background: #e8f8fa; box-shadow: 0 0 0 1px #03a5b820; }
+.filter-chip:hover { background: #eef7fa; }
+.material-swatch { display: inline-block; flex: 0 0 15px; width: 15px; height: 6px; border-radius: 5px; box-shadow: 0 0 0 1px #182c4325; }
+#search { width: 100%; margin-bottom: 10px; padding: 10px; border: 1px solid #dce4df; border-radius: 7px; font-size: 12px; }
+.filter-summary { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin: 4px 0 12px; font-size: 12px; color: #5a7187; }
+.filter-summary button { padding: 0; border: 0; background: transparent; color: #007f99; font-size: 12px; text-decoration: underline; }
+#fit-results { width: 100%; font-size: 12px; }
+
+/* Herramientas y menú de mapas base a la derecha. */
+.maplibregl-ctrl-top-right { top: 90px; right: 4px; display: flex; align-items: flex-start; z-index: 6; }
+.maplibregl-ctrl-top-right .maplibregl-ctrl-group { display: flex; float: none; }
+.maplibregl-ctrl-top-right .maplibregl-ctrl-group>button+button { border-top: 0; border-left: 1px solid #ddd; }
+.basemap-control { position: absolute; top: 325px; right: 14px; z-index: 4; width: 245px; max-width: calc(100% - 28px); padding: 14px 16px; background: #fffffff5; border: 1px solid #e5e9ee; border-radius: 14px; box-shadow: 0 6px 24px #17334e18; }
+.basemap-control>summary { margin: 0; color: #23354b; font-size: 13px; font-weight: 600; cursor: pointer; }
+.basemap-control[open]>summary { margin-bottom: 12px; }
+.basemap-control:not([open]) { width: auto; min-width: 125px; }
+.basemap-control label { font-size: 12px; color: #82908a; }
+#basemap { display: block; width: 100%; margin-top: 10px; padding: 9px; background: #f8faf8; color: #244a44; border: 1px solid #cfddd7; border-radius: 8px; font-size: 12px; }
+
+/* Regla: su panel se despliega hacia el interior del mapa. */
+.measure-control { position: relative; }
+.measure-control .measure-toggle { font-size: 18px; padding: 0; }
+.measure-control .measure-toggle.is-active { background: #dcefe8; color: #11624f; }
+.measure-panel { position: absolute; top: 40px; right: 0; width: 265px; padding: 15px; background: #fff; border: 1px solid #dce4df; border-radius: 9px; box-shadow: 0 4px 18px #172f3425; cursor: default; }
+.measure-panel .eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: #167965; }
+.measure-panel strong { display: block; margin-top: 8px; font-size: 23px; color: #c64d25; }
+.measure-panel p { margin: 8px 0 12px; font-size: 12px; line-height: 1.6; color: #6a7f78; }
+.measure-actions { display: flex; gap: 6px; }
+.maplibregl-ctrl-group .measure-actions button { display: block; width: auto; height: auto; padding: 7px; font-size: 11px; border: 1px solid #cfddd7; border-radius: 5px; }
+
+/* Marca institucional, coordenadas y mensajes. */
+.water-brand { position: absolute; right: 12px; bottom: 60px; width: 175px; padding: 9px 12px; background: #fffffff0; border: 1px solid #fff; border-radius: 10px; box-shadow: 0 3px 14px #17334e18; pointer-events: none; z-index: 3; }
+.water-brand img { display: block; width: 100%; height: auto; }
+.map-tools { position: absolute; right: 0; bottom: calc(100% + 10px); white-space: nowrap; }
+#position { display: block; padding: 9px; background: #ffffffdf; border-radius: 6px; color: #526c65; font-size: 11px; }
+.maplibregl-ctrl-attrib summary.maplibregl-ctrl-attrib-button { margin: 0; padding: 0; background-position: center; background-repeat: no-repeat; }
+#notice { position: absolute; top: 280px; right: 14px; max-width: min(380px,calc(100% - 40px)); padding: 12px 16px; border-radius: 8px; background: #fff; box-shadow: 0 3px 20px #172f3420; font-size: 12px; white-space: pre-wrap; z-index: 4; }
+
+@media (min-width:801px) and (max-width:1000px) {
+  .metric { min-width: 175px; padding: 8px 12px; }
+  .metric-distance { min-width: 235px; padding-right: 110px; }
+  .metric strong, .metric time { font-size: 16px; }
+}
+@media (max-width:800px) {
+  header { height: 115px; padding: 10px; align-items: flex-start; }
+  .irrigation-brand img { height: 60px; max-width: 115px; }
+  .header-metrics { left: 135px; right: 10px; top: 10px; gap: 0; }
+  .metric { flex: 1; min-width: 0; padding: 7px; }
+  .metric-date { flex: 0 0 44%; }
+  .metric strong, .metric time { font-size: 13px; white-space: normal; }
+  .metric span { font-size: 8px; white-space: normal; }
+  .metric small { position: static; align-self: flex-start; margin-top: 6px; font-size: 7px; }
+  aside { left: 10px; top: 125px; width: min(265px,calc(100% - 200px)); min-width: 145px; max-height: calc(100% - 175px); }
+  .maplibregl-ctrl-top-right { top: 115px; right: 0; }
+  .basemap-control { top: 169px; right: 10px; width: 170px; padding: 10px; }
+  .basemap-control label { display: none; }
+  #basemap { margin-top: 4px; }
+  .water-brand { width: 100px; right: 6px; }
+  #position { font-size: 10px; padding: 7px; }
+  #notice { top: auto; bottom: 65px; right: 10px; max-width: calc(100% - 20px); }
+}
+@media (max-width:420px) { .measure-panel { width: 230px; } }
